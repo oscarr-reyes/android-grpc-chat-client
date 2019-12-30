@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option java_multiple_files = true;
+
+package dev.oscarreyes.grpc;
+
+service ChatService {
+    rpc chat(stream ChatMessage) returns (stream ResponseMessage);
+}
+
+message ChatMessage {
+    string username = 1;
+    string message = 2;
+}
+
+message ResponseMessage {
+    google.protobuf.Timestamp timestamp = 1;
+    ChatMessage message = 2;
+}
